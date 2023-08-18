@@ -6,10 +6,11 @@ module.exports = {
     index: "./src/index.js",
     print: "./src/print.js",
   },
-  mode: "production",
+  mode: "development",
+  devtool: "inline-source-map",
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Output Management",
+      title: "Development",
     }),
   ],
   output: {
