@@ -1,7 +1,3 @@
-export default function printMe() {
-  console.log("I get called from print.js!");
-  // not console, err
+export default function print(text) {
+  console.log(text);
 }
-
-// Uncaught ReferenceError: cosnole is not defined
-//     at HTMLButtonElement.printMe (print.js:2 )

@@ -3,22 +3,27 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: {
-    index: "./src/index.js",
-  },
-  output: {
-    filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "dist"),
-    clean: true, // dist 폴더를 정리 => 오래된 파일 없이 빌드에서 생성된 파일
-    publicPath: "/",
-  },
-  devtool: "inline-source-map",
+  entry: "./src/index.js",
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Development",
+      title: "Caching",
     }),
   ],
-  devServer: {
-    static: "./dist",
+  output: {
+    filename: "[name].[contenthash].js",
+    path: path.resolve(__dirname, "dist"),
+    clean: true,
+  },
+  optimization: {
+    runtimeChunk: "single",
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all",
+        },
+      },
+    },
   },
 };
